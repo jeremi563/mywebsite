@@ -155,6 +155,36 @@ header{
 }
 
 
+/* Terminal Intro */
+.terminal-intro {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    background-color: var(--color-2);
+    padding: 1em;
+    border-radius: 0.5em;
+    min-height: 3rem;
+    overflow: hidden;
+    width: fit-content;
+    margin-bottom: 1em;
+}
+
+/* Blinking cursor */
+.cursor {
+    display: inline-block;
+    background-color: var(--primary-color);
+    width: 0.6rem;
+    margin-left: 2px;
+    animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+
+
+
 /* ========================= */
 /* Buttons */
 /* ========================= */
@@ -373,42 +403,64 @@ details p{
 /* ========================= */
 /* Footer Section */
 /* ========================= */
-footer{
-
-    padding-bottom: 1.5em;
+/* Footer Base */
+footer {
+    padding: 2em 1em;
     text-align: center;
- 
+    background-color: var(--color-1);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5em;
 }
-footer a{
-    margin: 1.5em;
+
+footer a {
     text-decoration: none;
     color: var(--text-color);
     position: relative;
     width: max-content;
-  
+    transition: 0.3s;
+    font-size: 1rem;
 }
-footer a::after{
- content: '';
-   background: linear-gradient(
-    to right,
-    #00f5ff,
-    #00ff88,
-    #0077ff
-);
 
+/* Footer hover underline effect */
+footer a::after {
+    content: '';
+    background: linear-gradient(to right, #00f5ff, #00ff88, #0077ff);
     width: 100%;
-    height: 4px;
+    height: 3px;
     position: absolute;
-    bottom: 0;
+    bottom: -3px;
     left: 0;
     transform: scaleX(0);
-    border-radius: 5px;
-  transform-origin: left;
-  transition: transform 0.5s linear;   
+    border-radius: 3px;
+    transform-origin: left;
+    transition: transform 0.3s linear;
 }
-footer a:hover::after{
+
+footer a:hover::after {
     transform: scaleX(1);
 }
+
+/* Mobile / Small screens */
+@media (max-width: 640px) {
+    footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8em;
+        padding: 1.5em 1em;
+    }
+
+    footer a {
+        font-size: 0.95rem;
+        width: auto; /* remove max-content to fit smaller screens */
+        text-align: center;
+    }
+}
+
+
+
 /*responsives of the site*/
 /* ========================= */
 /* Tablet Screens */
@@ -566,4 +618,68 @@ footer a:hover::after{
     box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     transition: all 0.3s ease;
 }
+
+
+
+
+/* ========================= */
+/* Mobile Sidebar / Hamburger */
+/* ========================= */
+
+.hamburger {
+    display: none; /* hidden on desktop */
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    position: absolute;
+    top: 1.2em;
+    right: 1em;
+    z-index: 100;
+}
+
+/* Sidebar Menu */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* hide by default */
+    width: 250px;
+    height: 100%;
+    background-color: var(--color-1);
+    padding-top: 4em;
+    transition: left 0.3s ease;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.sidebar a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 0.5em 1em;
+    transition: background 0.2s;
+}
+
+.sidebar a:hover {
+    background-color: rgba(0, 255, 255, 0.1); /* subtle hover */
+    border-radius: 0.5em;
+}
+
+/* When sidebar is active */
+.sidebar.active {
+    left: 0;
+}
+
+/* Show hamburger on mobile */
+@media(max-width: 640px){
+    .hamburger {
+        display: block;
+    }
+
+    nav ul {
+        display: none; /* hide regular nav */
+    }
+}
+
 
