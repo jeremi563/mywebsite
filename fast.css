@@ -2,15 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Press+Start+2P&display=swap');
 :root{
-    --base-color:#d0afaf;
-    --text-color:black;
-    --primary-color:rgb(220, 179, 42);
-    --secondary-color:rgb(66, 148, 220);
-    --color-1:#d79958;
-    --color-2:#c28849;
-    --color-3:#d79958;
-
+    --base-color: #0f172a;        /* deep navy */
+    --text-color: #f1f5f9;        /* soft white */
+    --primary-color: #00f5ff;     /* cyber cyan */
+    --secondary-color: #00ff88;   /* neon green */
+    --color-1: #1e293b;           /* header background */
+    --color-2: #111827;           /* section background */
+    --color-3: #1f2937;           /* alt section */
 }
+
 *{
   margin: 0;  
   padding: 0;
@@ -23,6 +23,7 @@ html{
 body{
     padding: 1.2em;
     background-color: var(--base-color);
+      line-height: 1.6;
 }
 h1,h2,h3 {
   font-family: merriweather,sans-serif;
@@ -52,7 +53,13 @@ nav a{
 
 nav li:not(:first-child) a::after{
     content: '';
-    background: linear-gradient(to right,#abe623,#d9c80d,#cbe906);
+  background: linear-gradient(
+    to right,
+    #00f5ff,
+    #00ff88,
+    #0077ff
+);
+
     width: 100%;
     height: 4px;
     position: absolute;
@@ -122,15 +129,24 @@ header{
     inset: -4px; /* important for border effect */
     border-radius: 1em;
 
-    background-image: conic-gradient(from var(--angle), transparent 70%, rgb(241, 174, 7));
+   background-image: conic-gradient(
+    from var(--angle),
+    transparent 70%,
+    #00f5ff,
+    #00ff88,
+    #0077ff
+);
+
     animation: 3s spin linear infinite;
 
     z-index: 0; /* no negative */
 }
 
 .img-wrapper::before{
-    filter: blur(1.5rem);
-    opacity: 0.6;
+    filter: blur(25px);
+    opacity: 0.8;
+    inset: -6px;
+
 }
 
 @keyframes spin{
@@ -155,22 +171,27 @@ h1{
 .cta-button{
    display: inline-block; 
    text-decoration: none;
-   color: #5e5145;
+   color:  #000;
    background-color: var(--primary-color);
    padding: .75em 1.25em;
    border-radius: .5em;
    font-weight: 600;
+    transition: all 0.3s ease;
 }
 .cta-button:hover{
-    background-color: rgb(137, 106, 5);
-      color: #dbd6d1;
+    background-color: var(--primary-color);
+      color:  #000;
+        box-shadow: 0 0 20px var(--primary-color);
+    transform: translateY(-3px);
 }
 .secondary{
     background-color: var(--secondary-color);
 }
 .secondary:hover{
-    background-color: rgb(20, 130, 227);
-      color: #dbd6d1;
+    background-color:var(--secondary-color);
+      color: #000;
+         box-shadow: 0 0 20px var(--secondary-color);
+    transform: translateY(-3px);
 }
 
 /* Slider Container */
@@ -183,6 +204,7 @@ h1{
     overflow: hidden;
     border-radius: 1em;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+       background-color: var(--color-3);
 }
 /* Slider Track */
 .slider {
@@ -198,13 +220,12 @@ h1{
     flex-shrink: 0;
     object-fit: cover; /* crop images nicely */
     border-radius: 1em;
+     object-position: center center; /* ensures the main part of image is visible */
+    transition: transform 0.5s ease;
  
 
 }
-   .slider img {
-    object-position: center center; /* ensures the main part of image is visible */
-}
-
+  
 /* ========================= */
 /* Navigate Skills */
 /* ========================= */
@@ -306,6 +327,7 @@ section{
     padding: 3em min(2em,15%);
     background-color: var(--color-2);
     text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
 }
 h2{
     font-size: 2rem;
@@ -367,7 +389,13 @@ footer a{
 }
 footer a::after{
  content: '';
-    background: linear-gradient(to right,#c9b908,#cdd002,#cbe909);
+   background: linear-gradient(
+    to right,
+    #00f5ff,
+    #00ff88,
+    #0077ff
+);
+
     width: 100%;
     height: 4px;
     position: absolute;
@@ -422,6 +450,7 @@ footer a:hover::after{
     }
     .slider-container {
         height: 300px;
+     
     }
 }
 
@@ -435,6 +464,7 @@ footer a:hover::after{
         flex-direction: column;
         gap: 1em;
         align-items: center;
+        text-align: center;
     }
 
     nav li:first-child{
