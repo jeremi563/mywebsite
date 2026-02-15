@@ -1,0 +1,539 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Press+Start+2P&display=swap');
+:root{
+    --base-color:#d0afaf;
+    --text-color:black;
+    --primary-color:rgb(220, 179, 42);
+    --secondary-color:rgb(66, 148, 220);
+    --color-1:#d79958;
+    --color-2:#c28849;
+    --color-3:#d79958;
+
+}
+*{
+  margin: 0;  
+  padding: 0;
+  box-sizing: border-box;
+}
+html{
+    font-family: Inter,Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: var(--text-color);
+}
+body{
+    padding: 1.2em;
+    background-color: var(--base-color);
+}
+h1,h2,h3 {
+  font-family: merriweather,sans-serif;
+}
+nav{
+   margin: 1em auto 3em auto; 
+   width: min(1000px,100%);
+}
+nav ul{
+    display: flex;
+    align-items:center ;
+    list-style-type: none;
+    gap: 2em;
+}
+nav li:first-child{
+   margin-right: auto;
+   font-family: merriweather,sans-serif; 
+   font-weight: bold;
+}
+nav a{
+    text-decoration: none;
+    color: var(--text-color);
+    position: relative;
+    width: max-content;
+    transition: 200ms;
+}
+
+nav li:not(:first-child) a::after{
+    content: '';
+    background: linear-gradient(to right,#abe623,#d9c80d,#cbe906);
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+      transform: scaleX(0);
+      border-radius: 5px;
+  transform-origin: left;
+  transition: transform 0.5s linear;
+  
+}
+nav li:not(:first-child) a:hover::after{
+    transform: scaleX(1);
+}
+/* ========================= */
+/*Header Section */
+/* ========================= */
+header,section{
+    margin: 1.5em auto;
+    width: min(75em,100%);
+    background-color: var(--color-1);
+    padding: min(2em ,15%);
+    border-radius: 1em;
+
+}
+header{
+    margin-top: 2px;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3em;
+    
+}
+/* ========================= */
+/*Image animations */
+/* ========================= */
+.img-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.img-wrapper img {
+    position: relative;
+    z-index: 1; /* Bring image above animation */
+    display: block;
+    height: 400px;
+    width: 300px;
+    border-radius: 1em;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.img-wrapper::before,
+.img-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: -4px; /* important for border effect */
+    border-radius: 1em;
+
+    background-image: conic-gradient(from var(--angle), transparent 70%, rgb(241, 174, 7));
+    animation: 3s spin linear infinite;
+
+    z-index: 0; /* no negative */
+}
+
+.img-wrapper::before{
+    filter: blur(1.5rem);
+    opacity: 0.6;
+}
+
+@keyframes spin{
+    from { --angle: 0deg; }
+    to { --angle: 360deg; }
+}
+
+
+/* ========================= */
+/* Buttons */
+/* ========================= */
+.text-container{
+    flex: 0 1 34em;
+}
+h1{
+    font-size:2.5rem ;
+}
+.text-container p{
+    margin: .75em 0 1em 0;
+    font-size: 1.25rem;
+}
+.cta-button{
+   display: inline-block; 
+   text-decoration: none;
+   color: #5e5145;
+   background-color: var(--primary-color);
+   padding: .75em 1.25em;
+   border-radius: .5em;
+   font-weight: 600;
+}
+.cta-button:hover{
+    background-color: rgb(137, 106, 5);
+      color: #dbd6d1;
+}
+.secondary{
+    background-color: var(--secondary-color);
+}
+.secondary:hover{
+    background-color: rgb(20, 130, 227);
+      color: #dbd6d1;
+}
+
+/* Slider Container */
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* smaller max width */
+    height: 400px; /* fixed height for all images */
+    margin: 2em auto;
+    overflow: hidden;
+    border-radius: 1em;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+/* Slider Track */
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+
+/* Slider Images */
+.slider img {
+    width: 100%;
+    height: 100%; /* make images fit the container */
+    flex-shrink: 0;
+    object-fit: cover; /* crop images nicely */
+    border-radius: 1em;
+ 
+
+}
+   .slider img {
+    object-position: center center; /* ensures the main part of image is visible */
+}
+
+/* ========================= */
+/* Navigate Skills */
+/* ========================= */
+
+.slider-container button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 0.5em 0.8em;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+
+.slider-container button:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.slider-container .prev {
+    left: 10px;
+}
+
+.slider-container .next {
+    right: 10px;
+}
+
+/* Responsive Slider */
+@media(max-width:640px){
+    .slider-container button {
+        font-size: 1.5rem;
+        padding: 0.4em 0.6em;
+    }
+}
+
+
+
+/* ========================= */
+/* skills Section */
+/* ========================= */
+#skills{
+    margin: 2em auto;
+    width: min(75em, 100%);
+    text-align: center;
+    padding: 2em 1em;
+    border-radius: 1em;
+    background-color: var(--color-3);
+}
+
+#skills h2{
+    font-size: 2rem;
+    margin-bottom: 1.5em;
+}
+
+.skills-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5em;
+    justify-items: center;
+}
+
+.skill-card{
+    background-color: var(--color-2);
+    padding: 1.5em 1em;
+    border-radius: 1em;
+    width: 100%;
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+    text-align: center;
+}
+
+.skill-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.skill-card h3{
+    margin-bottom: 0.75em;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.skill-card p{
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--text-color);
+}
+
+
+/* ========================= */
+/* Section*/
+/* ========================= */
+section{
+    padding: 3em min(2em,15%);
+    background-color: var(--color-2);
+    text-align: center;
+}
+h2{
+    font-size: 2rem;
+}
+section p{
+    margin-top: 1em;
+    font-size: 1.25rem;
+}
+section #my-work{
+    background-color: var(--color-3);
+}
+.grid-container{
+    margin-top: 3em;
+    margin-bottom: 3em;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: 1fr,1fr;
+    grid-template-areas:
+    "img-1 img-2 img-3"
+    "img-1 img-2 img-5";
+    gap: 1em;
+}
+.grid-container img{
+    height: 100%;
+    width: 100%;
+    border-radius: .5em;
+    transition: 100ms ease;
+}
+details{
+    margin-top: 1em;
+    background-color: var(--base-color);
+    border-radius: 1em;
+}
+details summary{
+    padding: 1em;
+    font-size: 1.7rem;
+    font-family: merriweather,sans-serif;
+}
+details p{
+    padding: 0 2em 2em 2em;
+}
+/* ========================= */
+/* Footer Section */
+/* ========================= */
+footer{
+
+    padding-bottom: 1.5em;
+    text-align: center;
+ 
+}
+footer a{
+    margin: 1.5em;
+    text-decoration: none;
+    color: var(--text-color);
+    position: relative;
+    width: max-content;
+  
+}
+footer a::after{
+ content: '';
+    background: linear-gradient(to right,#c9b908,#cdd002,#cbe909);
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    border-radius: 5px;
+  transform-origin: left;
+  transition: transform 0.5s linear;   
+}
+footer a:hover::after{
+    transform: scaleX(1);
+}
+/*responsives of the site*/
+/* ========================= */
+/* Tablet Screens */
+/* ========================= */
+@media (max-width: 988px){
+
+    nav ul{
+        gap: 1.2em;
+        font-size: 0.95rem;
+    }
+
+    .flex-container{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .text-container{
+        flex: 1 1 auto;
+    }
+
+    .img-wrapper img{
+        width: 260px;
+        height: 340px;
+    }
+    .skills-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    section{
+        padding: 2em;
+    }
+
+    .grid-container{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+        "img-1 img-2"
+        "img-3 img-4"
+        "img-5 img-5";
+    }
+    .slider-container {
+        height: 300px;
+    }
+}
+
+
+/* ========================= */
+/* Mobile Screens */
+/* ========================= */
+@media (max-width: 640px){
+
+    nav ul{
+        flex-direction: column;
+        gap: 1em;
+        align-items: center;
+    }
+
+    nav li:first-child{
+        margin-right: 0;
+    }
+
+    header{
+        margin-top: 0;
+        padding: 1.5em;
+    }
+
+    h1{
+        font-size: 1.8rem;
+    }
+
+    h2{
+        font-size: 1.5rem;
+    }
+
+    .text-container p{
+        font-size: 1rem;
+    }
+
+    .img-wrapper img{
+        width: 220px;
+        height: 300px;
+    }
+
+    .cta-button{
+        display: block;
+        width: 100%;
+        margin-top: .75em;
+        text-align: center;
+    }
+
+    .grid-container{
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "img-1"
+        "img-2"
+        "img-3"
+        "img-4"
+        "img-5";
+    }
+
+    details summary{
+        font-size: 1.2rem;
+    }
+
+    footer a{
+        display: block;
+        margin: .75em 0;
+    }
+    .skills-grid{
+        grid-template-columns: 1fr;
+    }
+    .skill-card{
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    .slider-container {
+        height: 200px;
+    }
+}
+
+
+
+
+/* WhatsApp Floating Button */
+.whatsapp-chat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    z-index: 1000;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    animation: bounce 2s infinite;
+}
+
+.whatsapp-chat img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Small bounce animation for attention */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Optional hover effect */
+.whatsapp-chat:hover{
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+}
+
