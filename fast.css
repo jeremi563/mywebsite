@@ -349,7 +349,6 @@ details summary{
     padding: 1em;
     font-size: 1.7rem;
     font-family: 'Poppins', sans-serif;
-}
 details p{ padding: 0 2em 2em 2em; }
 
 /* ========================= */
@@ -446,15 +445,15 @@ footer a:hover::after { transform: scaleX(1); }
 .sidebar #close-btn{
   position: absolute;
   right: 3px;
-  top: 3px;
+
      height: 30px;
      width: 30px;
 }
 #close-btn #fa-x{
  color: rgb(245, 242, 242);
  z-index: 1000;
- height: 25px;
- width: 25px;
+ height: 30px;
+ width: 30px;
 }
 
 /* ========================= */
